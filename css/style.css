@@ -1,0 +1,13 @@
+/* Базовый сброс стилей */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Потом заменим на красивый шрифт */
+    background-color: #fff0f5; /* Lavender Blush - нежный фон */
+    color: #333;
+    line-height: 1.6;
+}
