@@ -70,14 +70,6 @@ const products = [
         desc: "Как приятно бывает забыть на денёк о своих делах и расслабиться, доверив заботу о себе настоящим профессионалам! Предлагаю тебе посетить комплекс спа-процедур, после которых ты точно станешь чувствовать себя любимой девушкой!",
         img: "img/spa.jpg",
         category: "relax"
-    },
-    {
-        id: 9,
-        name: "💝 Что-то особенное",
-        price: 10000,
-        desc: "Иногда лучшие подарки — те, которые рождаются в моменте. Доверься моей фантазии, и я придумаю что-то уникальное именно для тебя. Это может быть всё что угодно: от пикника на крыше до внезапной поездки за город. Сюрприз гарантирован!",
-        img: "img/surprise.jpg",
-        category: "surprise"
     }
 ];
 
@@ -159,7 +151,7 @@ function openModal(product) {
     currentProduct = product;
     document.getElementById('modal-title').textContent = product.name;
     document.getElementById('modal-desc').textContent = product.desc;
-    document.getElementById('modal-price').textContent = product.price;
+    document.getElementById('modal-price').textContent = product.price.toLocaleString('ru-RU') + ' 💰';
     document.getElementById('modal-img').src = product.img;
     document.getElementById('product-modal').classList.add('active');
 }
