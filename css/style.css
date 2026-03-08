@@ -29,7 +29,7 @@ body {
 .floating-heart {
     position: absolute;
     font-size: 2rem;
-    opacity: 0.1;
+    opacity: 0.35;
     animation: float-up 15s linear infinite;
     user-select: none;
     z-index: 0;
@@ -85,12 +85,15 @@ body {
     text-align: center;
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
+    padding-top: 10vh; 
+    padding-bottom: 10vh; 
 }
 
 .welcome-content {
-    max-width: 600px;
-    padding: 40px 30px;
+    max-width: 700px;
+    padding: 50px 40px; 
     animation: slideIn 0.8s ease-out;
+    margin-top: 5vh; 
 }
 
 @keyframes slideIn {
@@ -106,14 +109,15 @@ body {
 
 .march8-greeting {
     font-family: 'Pacifico', cursive;
-    font-size: 3.5rem;
+    font-size: 4.5rem;  /* Было 3.5rem — сделали больше */
     background: linear-gradient(45deg, #e91e63, #ff4081, #ff80ab);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 30px;
+    margin-bottom: 40px;  /* Было 30px */
     animation: heartbeat 1.5s infinite, glow 2s ease-in-out infinite alternate;
     text-shadow: 0 0 30px rgba(233, 30, 99, 0.3);
+    line-height: 1.2;  /* Добавлено для лучшей читаемости */
 }
 
 @keyframes heartbeat {
@@ -132,20 +136,25 @@ body {
 
 .love-message {
     background: rgba(255, 255, 255, 0.9);
-    padding: 30px;
-    border-radius: 20px;
-    margin-bottom: 30px;
+    padding: 40px;  /* Было 30px */
+    border-radius: 25px;  /* Было 20px */
+    margin-bottom: 40px;  /* Было 30px */
     box-shadow: 0 8px 32px rgba(233, 30, 99, 0.2);
 }
 
 .love-title {
     font-family: 'Pacifico', cursive;
-    font-size: 2rem;
+    font-size: 2.5rem;  /* Было 2rem */
     color: #e91e63;
-    margin-bottom: 15px;
+    margin-bottom: 20px;  /* Было 15px */
     animation: pulse 2s infinite;
 }
 
+.love-text {
+    font-size: 1.4rem;  /* Было 1.2rem */
+    color: #555;
+    line-height: 2;  /* Было 1.8 — больше воздуха */
+}
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.8; }
@@ -161,8 +170,8 @@ body {
     background: linear-gradient(45deg, #e91e63, #ff4081);
     color: white;
     border: none;
-    padding: 18px 50px;
-    font-size: 1.2rem;
+    padding: 22px 60px;  /* Было 18px 50px */
+    font-size: 1.4rem;  /* Было 1.2rem */
     font-weight: 600;
     border-radius: 50px;
     cursor: pointer;
@@ -199,37 +208,38 @@ body {
 /* === КАТАЛОГ === */
 #catalog-screen {
     justify-content: flex-start;
-    padding-top: 40px;
+    padding-top: 60px;  /* Было 40px */
+    padding-bottom: 60px;  /* Добавлено */
     background: rgba(255, 255, 255, 0.2);
-}
-
-.catalog-header {
-    text-align: center;
-    margin-bottom: 30px;
-    animation: fadeIn 0.8s ease-out;
 }
 
 .catalog-title {
     font-family: 'Pacifico', cursive;
-    font-size: 2.2rem;
+    font-size: 2.8rem;  /* Было 2.2rem */
     color: #e91e63;
-    margin-bottom: 20px;
+    margin-bottom: 30px;  /* Было 20px */
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .budget-info {
     background: white;
-    padding: 12px 30px;
+    padding: 15px 35px;  /* Было 12px 30px */
     border-radius: 25px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.3rem;  /* Было 1.1rem */
     display: inline-block;
     transition: transform 0.3s;
 }
 
-.budget-info:hover {
-    transform: scale(1.05);
+.hearts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;  /* Было 30px */
+    max-width: 750px;  /* Было 700px */
+    width: 100%;
+    padding: 30px;  /* Было 20px */
+    animation: fadeIn 1s ease-out;
 }
 
 /* === СЕТКА СЕРДЕЧЕК === */
@@ -314,25 +324,25 @@ body {
 }
 
 /* Размеры сердечек */
-.heart-item.small { width: 90px; height: 90px; }
-.heart-item.medium { width: 110px; height: 110px; }
-.heart-item.large { width: 130px; height: 130px; }
+/* Размеры сердечек */
+.heart-item.small { width: 110px; height: 110px; }  /* Было 90px */
+.heart-item.medium { width: 135px; height: 135px; }  /* Было 110px */
+.heart-item.large { width: 160px; height: 160px; }  /* Было 130px */
 
-.heart-item.small .heart-icon { font-size: 2.5rem; }
-.heart-item.medium .heart-icon { font-size: 3rem; }
-.heart-item.large .heart-icon { font-size: 3.5rem; }
+.heart-item.small .heart-icon { font-size: 3rem; }  /* Было 2.5rem */
+.heart-item.medium .heart-icon { font-size: 3.5rem; }  /* Было 3rem */
+.heart-item.large .heart-icon { font-size: 4rem; }  /* Было 3.5rem */
 
-/* === ЦЕНА НА СЕРДЕЧКЕ === */
 .heart-price {
     position: absolute;
-    bottom: -28px;
+    bottom: -32px;  /* Было -28px */
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(45deg, #e91e63, #ff4081);
     color: white;
-    padding: 5px 15px;
+    padding: 6px 18px;  /* Было 5px 15px */
     border-radius: 20px;
-    font-size: 0.85rem;
+    font-size: 0.95rem;  /* Было 0.85rem */
     font-weight: 600;
     box-shadow: 0 3px 10px rgba(233, 30, 99, 0.3);
     white-space: nowrap;
@@ -340,12 +350,16 @@ body {
     transition: transform 0.3s;
 }
 
-.heart-item:hover .heart-price {
-    transform: translateX(-50%) scale(1.1);
+.heart-item.small .heart-price { 
+    font-size: 0.85rem; 
+    padding: 5px 15px; 
+    bottom: -28px; 
 }
-
-.heart-item.small .heart-price { font-size: 0.75rem; padding: 4px 12px; bottom: -25px; }
-.heart-item.large .heart-price { font-size: 0.9rem; padding: 6px 18px; bottom: -30px; }
+.heart-item.large .heart-price { 
+    font-size: 1.05rem; 
+    padding: 7px 22px; 
+    bottom: -35px; 
+}
 
 /* === МОДАЛЬНОЕ ОКНО === */
 .modal {
@@ -531,56 +545,44 @@ body {
 /* === АДАПТИВНОСТЬ === */
 @media (max-width: 768px) {
     .march8-greeting {
-        font-size: 2.5rem;
+        font-size: 3.2rem;  /* Было 2.5rem */
     }
     
     .love-title {
-        font-size: 1.6rem;
+        font-size: 2rem;  /* Было 1.6rem */
+    }
+    
+    .love-text {
+        font-size: 1.2rem;  /* Было 1rem (подразумевалось) */
     }
     
     .catalog-title {
-        font-size: 1.8rem;
+        font-size: 2.2rem;  /* Было 1.8rem */
     }
     
     .hearts-grid {
-        gap: 20px;
-        padding: 15px;
+        gap: 25px;  /* Было 20px */
+        padding: 20px;  /* Было 15px */
     }
     
-    .heart-item.small { width: 75px; height: 75px; }
-    .heart-item.medium { width: 95px; height: 95px; }
-    .heart-item.large { width: 115px; height: 115px; }
-    
-    .heart-item.small .heart-icon { font-size: 2rem; }
-    .heart-item.medium .heart-icon { font-size: 2.5rem; }
-    .heart-item.large .heart-icon { font-size: 3rem; }
-    
-    .heart-price {
-        font-size: 0.75rem;
-        padding: 4px 10px;
-    }
+    .heart-item.small { width: 90px; height: 90px; }
+    .heart-item.medium { width: 110px; height: 110px; }
+    .heart-item.large { width: 130px; height: 130px; }
     
     .footer-note {
-        margin: 20px 15px 100px;
-        font-size: 0.85rem;
-        padding: 15px 20px;
-    }
-    
-    .cart-floating {
-        bottom: 20px;
-        right: 20px;
-        left: 20px;
-        justify-content: center;
-        flex-wrap: wrap;
+        margin: 30px 15px 120px;  /* Было 20px 15px 100px */
+        font-size: 0.95rem;  /* Было 0.85rem */
+        padding: 20px 25px;  /* Было 15px 20px */
     }
 }
 
 @media (max-width: 480px) {
     .march8-greeting {
-        font-size: 2rem;
+        font-size: 2.5rem;  /* Было 2rem */
     }
     
     .hearts-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 }
