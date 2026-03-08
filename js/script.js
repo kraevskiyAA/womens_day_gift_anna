@@ -217,24 +217,97 @@ function updateCartUI() {
     if (cart.length > 0) {
         cartFloating.classList.add('active');
     }
+    
+    // Добавляем клик для открытия корзины
+    cartFloating.addEventListener('click', (e) => {
+        if (e.target.id !== 'checkout-btn') {
+            openCart();
+        }
+    });
+}
+
+// === ОТКРЫТИЕ КОРЗИНЫ ===
+function openCart() {
+    const modal = document.getElementById('cart-modal');
+    const container = document.getElementById('cart-items-container');
+    const totalAmount = document.getElementById('cart-total-amount');
+    const budgetLeftAmount = document.getElementById('cart-budget-left-amount');
+    
+    container.innerHTML = '';
+    
+    if (cart.length === 0) {
+        container.innerHTML = `
+            <div class="cart-empty">
+                <div class="cart-empty-icon">🛒</div>
+                <div class="cart-empty-text">Корзина пуста.<br>Добавь подарки из каталога!</div>
+            </div>
+        `;
+    } else {
+        cart.forEach((item, index) => {
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item';
+            cartItem.innerHTML = `
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">${item.price.toLocaleString('ru-RU')} 💰</div>
+                </div>
+                <button class="cart-item-remove" onclick="removeFromCart(${index})">×</button>
+            `;
+            container.appendChild(cartItem);
+        });
+    }
+    
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    const budgetLeft = BUDGET_LIMIT - total;
+    
+    totalAmount.textContent = `${total.toLocaleString('ru-RU')} 💰`;
+    budgetLeftAmount.textContent = `${budgetLeft.toLocaleString('ru-RU')} 💰`;
+    
+    modal.classList.add('active');
+}
+
+// === УДАЛЕНИЕ ИЗ КОРЗИНЫ ===
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateBudgetDisplay();
+    updateCartUI();
+    openCart(); // Перерисовать корзину
+    
+    if (cart.length === 0) {
+        document.getElementById('cart-floating').classList.remove('active');
+    }
+    
+    showNotification('Подарок удалён из корзины 🗑️');
+}
+
+// === ЗАКРЫТИЕ КОРЗИНЫ ===
+function closeCart() {
+    document.getElementById('cart-modal').classList.remove('active');
 }
 
 function setupCart() {
     const checkoutBtn = document.getElementById('checkout-btn');
+    const checkoutFromCartBtn = document.getElementById('checkout-from-cart-btn');
+    const continueShoppingBtn = document.getElementById('continue-shopping-btn');
+    const closeCartModal = document.getElementById('close-cart-modal');
     
-    checkoutBtn.addEventListener('click', async () => {
+    // Оформление из плавающей корзины
+    checkoutBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Чтобы не открывалась корзина
+        openCart();
+    });
+    
+    // Оформление из модального окна корзины
+    checkoutFromCartBtn.addEventListener('click', async () => {
         if (cart.length === 0) {
             alert('Корзина пуста!');
             return;
         }
         
         const total = cart.reduce((sum, item) => sum + item.price, 0);
-        
-        // Убрали запрос имени — просто фиксируем
-        const name = 'Анна'; // Или её имя
+        const name = 'Анна';
         const comment = prompt('Комментарий к заказу (необязательно):', '');
         
-        // URL твоего Google Apps Script
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwokO5p5kFkoQsREY4bMFxTf0CDjhxK8KQi572UBnMAY1wv0vxOlj99qurFT1X4K3Rm/exec';
         
         try {
@@ -252,18 +325,34 @@ function setupCart() {
                 })
             });
             
-            // Очищаем корзину
             cart = [];
             updateBudgetDisplay();
             updateCartUI();
+            closeCart();
             document.getElementById('cart-floating').classList.remove('active');
             
-            // Показываем успешное сообщение
             alert('Ваш заказ сформирован и будет передан для исполнения в ближайшее время! ❤️');
             
         } catch (error) {
             console.error('Ошибка:', error);
             alert('Произошла ошибка при отправке. Пожалуйста, сделай скриншот корзины и отправь мне!');
+        }
+    });
+    
+    // Продолжить выбор
+    continueShoppingBtn.addEventListener('click', () => {
+        closeCart();
+    });
+    
+    // Закрытие по крестику
+    closeCartModal.addEventListener('click', () => {
+        closeCart();
+    });
+    
+    // Закрытие по клику вне окна
+    document.getElementById('cart-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'cart-modal') {
+            closeCart();
         }
     });
 }

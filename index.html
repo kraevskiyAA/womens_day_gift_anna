@@ -67,5 +67,35 @@
     </div>
 
     <script src="js/script.js"></script>
+    <!-- Модальное окно КОРЗИНЫ -->
+    <div id="cart-modal" class="modal cart-modal">
+        <div class="modal-content cart-modal-content">
+            <span class="close-modal" id="close-cart-modal">&times;</span>
+            <h2 class="cart-modal-title">🛒 Твоя корзина</h2>
+            
+            <div class="cart-items" id="cart-items-container">
+                <!-- Товары будут добавлены через JS -->
+            </div>
+            
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <span>Итого:</span>
+                    <span id="cart-total-amount">0 💰</span>
+                </div>
+                <div class="cart-budget-left">
+                    <span>Остаток бюджета:</span>
+                    <span id="cart-budget-left-amount">50000 💰</span>
+                </div>
+            </div>
+            
+            <div class="cart-actions">
+                <button id="continue-shopping-btn" class="secondary-btn">Продолжить выбор</button>
+                <button id="checkout-from-cart-btn" class="main-btn">Оформить заказ</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
+
