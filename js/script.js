@@ -122,14 +122,50 @@ function updateCartUI() {
 
 function setupCart() {
     const checkoutBtn = document.getElementById('checkout-btn');
-    checkoutBtn.addEventListener('click', () => {
+    
+    checkoutBtn.addEventListener('click', async () => {
         if (cart.length === 0) {
             alert('Корзина пуста!');
             return;
         }
-        // Покажем уведомление, позже добавим отправку в Google Таблицу
-        alert('Ваш заказ сформирован и будет передан для исполнения в ближайшее время! ❤️');
-        // Здесь будет функция отправки в Google Sheets
+        
+        const total = cart.reduce((sum, item) => sum + item.price, 0);
+        
+        // Спрашиваем имя (можно убрать, если не нужно)
+        const name = prompt('Введи своё имя:', 'Любимая');
+        const comment = prompt('Комментарий к заказу (необязательно):', '');
+        
+        const SCRIPT_URL = 'https://script.google.com/macros/library/d/1ydozoPe0NMa0WVHUd_6V4W0jfd7XnU8Of19SXtxQzsTznAAdvnxmYCty/1';
+        
+        try {
+            // Отправляем данные
+            await fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Важно для Google Apps Script
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    cart: cart,
+                    total: total,
+                    name: name,
+                    comment: comment
+                })
+            });
+            
+            // Очищаем корзину
+            cart = [];
+            updateBudgetDisplay();
+            updateCartUI();
+            document.getElementById('cart-floating').classList.remove('active');
+            
+            // Показываем успешное сообщение
+            alert('Ваш заказ сформирован и будет передан для исполнения в ближайшее время! ❤️');
+            
+        } catch (error) {
+            console.error('Ошибка:', error);
+            alert('Произошла ошибка при отправке. Пожалуйста, сделай скриншот корзины и отправь мне!');
+        }
     });
 }
 
