@@ -4,22 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Для тебя ❤️</title>
-    <!-- Подключаем стили -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Шрифт (опционально, подключим позже Google Fonts) -->
+    <!-- Подключаем красивый шрифт Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Здесь будет весь контент -->
-    <header>
-        <h1>Привет, любимая!</h1>
-    </header>
+    <!-- ЭКРАН 1: Приветствие (Disclaimer) -->
+    <section id="welcome-screen" class="screen active">
+        <div class="welcome-content">
+            <h1 class="love-title">Для самой лучшей девушки в мире 💖</h1>
+            <p class="love-text">
+                Я тебя очень люблю! <br>
+                Этот маленький сайт — возможность выбрать то, что принесёт тебе радость.
+            </p>
+            <button id="start-btn" class="main-btn">Перейти к выбору подарков</button>
+        </div>
+    </section>
 
-    <main>
-        <p>Загрузка магии...</p>
-    </main>
+    <!-- ЭКРАН 2: Каталог подарков (9 сердечек) -->
+    <section id="catalog-screen" class="screen">
+        <header class="catalog-header">
+            <h2>Выбери свои подарки</h2>
+            <div class="budget-info">
+                <span>Бюджет: <span id="budget-display">0</span> / <span id="budget-limit">50000</span> 💰</span>
+            </div>
+        </header>
 
-    <!-- Подключаем скрипт -->
+        <main class="hearts-grid" id="hearts-container">
+            <!-- Сердечки будут сгенерированы через JS -->
+        </main>
+    </section>
+
+    <!-- Модальное окно товара -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <img id="modal-img" src="" alt="Подарок">
+                <h3 id="modal-title"></h3>
+                <p id="modal-desc"></p>
+                <p class="modal-price">Цена: <span id="modal-price"></span> 💰</p>
+                <button id="add-to-cart-btn" class="main-btn">Добавить в корзину</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Плавающая корзина -->
+    <div id="cart-floating" class="cart-floating">
+        <span>🛒 Корзина: <span id="cart-count">0</span></span>
+        <button id="checkout-btn" class="checkout-btn">Оформить</button>
+    </div>
+
     <script src="js/script.js"></script>
 </body>
 </html>
