@@ -136,7 +136,7 @@ function setupCart() {
         const comment = prompt('Комментарий к заказу (необязательно):', '');
         
         // URL твоего Google Apps Script
-        const SCRIPT_URL = 'https://script.google.com/macros/s/.../exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwokO5p5kFkoQsREY4bMFxTf0CDjhxK8KQi572UBnMAY1wv0vxOlj99qurFT1X4K3Rm/exec';
         
         try {
             await fetch(SCRIPT_URL, {
