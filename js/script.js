@@ -135,7 +135,7 @@ function setupCart() {
         const name = prompt('Введи своё имя:', 'Любимая');
         const comment = prompt('Комментарий к заказу (необязательно):', '');
         
-        const SCRIPT_URL = 'https://script.google.com/macros/library/d/1ydozoPe0NMa0WVHUd_6V4W0jfd7XnU8Of19SXtxQzsTznAAdvnxmYCty/1';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwokO5p5kFkoQsREY4bMFxTf0CDjhxK8KQi572UBnMAY1wv0vxOlj99qurFT1X4K3Rm/exec';
         
         try {
             // Отправляем данные
