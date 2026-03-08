@@ -73,19 +73,32 @@ const products = [
     }
 ];
 
+// === ФОНОВЫЕ СЕРДЕЧКИ ===
 function createFloatingHearts() {
     const container = document.getElementById('hearts-bg');
-    const hearts = ['❤️', '💖', '', '💗', '', '💘'];
+    const hearts = ['❤️', '💖', '💕', '💗', '💓', '💘'];
     
-    // Создаём 15 плавающих сердечек
-    for (let i = 0; i < 15; i++) {
+    // Создаём 20 плавающих сердечек
+    for (let i = 0; i < 20; i++) {
         const heart = document.createElement('div');
         heart.className = 'floating-heart';
         heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        
+        // Случайная позиция по горизонтали (0-100%)
         heart.style.left = Math.random() * 100 + '%';
-        heart.style.animationDuration = (Math.random() * 10 + 10) + 's'; // 10-20s
+        
+        // Случайная начальная позиция по вертикали (0-100%)
+        heart.style.top = Math.random() * 100 + '%';
+        
+        // Случайная длительность анимации (15-25 секунд)
+        heart.style.animationDuration = (Math.random() * 10 + 15) + 's';
+        
+        // Случайная задержка
         heart.style.animationDelay = Math.random() * 15 + 's';
-        heart.style.fontSize = (Math.random() * 2 + 1.5) + 'rem';
+        
+        // Случайный размер (от 1.5rem до 3rem)
+        heart.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
+        
         container.appendChild(heart);
     }
 }
