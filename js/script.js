@@ -131,17 +131,17 @@ function setupCart() {
         
         const total = cart.reduce((sum, item) => sum + item.price, 0);
         
-        // Спрашиваем имя (можно убрать, если не нужно)
-        const name = prompt('Введи своё имя:', 'Любимая');
+        // Убрали запрос имени — просто фиксируем
+        const name = 'Анна'; // Или её имя
         const comment = prompt('Комментарий к заказу (необязательно):', '');
         
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwokO5p5kFkoQsREY4bMFxTf0CDjhxK8KQi572UBnMAY1wv0vxOlj99qurFT1X4K3Rm/exec';
+        // URL твоего Google Apps Script
+        const SCRIPT_URL = 'https://script.google.com/macros/s/.../exec';
         
         try {
-            // Отправляем данные
             await fetch(SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors', // Важно для Google Apps Script
+                mode: 'no-cors',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -149,7 +149,7 @@ function setupCart() {
                     cart: cart,
                     total: total,
                     name: name,
-                    comment: comment
+                    comment: comment || ''
                 })
             });
             
