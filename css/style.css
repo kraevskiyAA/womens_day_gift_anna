@@ -7,10 +7,48 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 50%, #ffb6c1 100%);
     color: #333;
     min-height: 100vh;
     overflow-x: hidden;
+    position: relative;
+}
+
+/* === ФОНОВЫЕ СЕРДЕЧКИ === */
+.hearts-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.15;
+    animation: float-up 15s linear infinite;
+    user-select: none;
+}
+
+@keyframes float-up {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.15;
+    }
+    90% {
+        opacity: 0.15;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
 }
 
 /* === ЭКРАНЫ === */
@@ -18,6 +56,8 @@ body {
     display: none;
     min-height: 100vh;
     padding: 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .screen.active {
@@ -25,25 +65,94 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* === ЭКРАН ПРИВЕТСТВИЯ === */
 #welcome-screen {
     text-align: center;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.welcome-content {
+    max-width: 600px;
+    padding: 40px 30px;
+    animation: slideIn 0.8s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.march8-greeting {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.5rem;
+    background: linear-gradient(45deg, #e91e63, #ff4081, #ff80ab);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 30px;
+    animation: heartbeat 1.5s infinite, glow 2s ease-in-out infinite alternate;
+    text-shadow: 0 0 30px rgba(233, 30, 99, 0.3);
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 10px rgba(233, 30, 99, 0.5));
+    }
+    to {
+        filter: drop-shadow(0 0 25px rgba(255, 105, 180, 0.8));
+    }
+}
+
+.love-message {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 32px rgba(233, 30, 99, 0.2);
 }
 
 .love-title {
     font-family: 'Pacifico', cursive;
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #e91e63;
-    margin-bottom: 20px;
-    animation: heartbeat 1.5s infinite;
+    margin-bottom: 15px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
 }
 
 .love-text {
     font-size: 1.2rem;
     color: #555;
-    margin-bottom: 30px;
     line-height: 1.8;
 }
 
@@ -51,51 +160,86 @@ body {
     background: linear-gradient(45deg, #e91e63, #ff4081);
     color: white;
     border: none;
-    padding: 15px 40px;
-    font-size: 1.1rem;
+    padding: 18px 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
     border-radius: 50px;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.main-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.main-btn:hover::before {
+    left: 100%;
 }
 
 .main-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(233, 30, 99, 0.6);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(233, 30, 99, 0.6);
+}
+
+.main-btn:active {
+    transform: translateY(-1px) scale(1.02);
 }
 
 /* === КАТАЛОГ === */
 #catalog-screen {
     justify-content: flex-start;
     padding-top: 40px;
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .catalog-header {
     text-align: center;
     margin-bottom: 30px;
+    animation: fadeIn 0.8s ease-out;
 }
 
-.catalog-header h2 {
+.catalog-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.2rem;
     color: #e91e63;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .budget-info {
     background: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 12px 30px;
+    border-radius: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     font-weight: 600;
+    font-size: 1.1rem;
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.budget-info:hover {
+    transform: scale(1.05);
 }
 
 /* === СЕТКА СЕРДЕЧЕК === */
 .hearts-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 600px;
+    gap: 30px;
+    max-width: 700px;
     width: 100%;
     padding: 20px;
+    animation: fadeIn 1s ease-out;
 }
 
 .heart-item {
@@ -105,31 +249,102 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    box-shadow: 0 6px 20px rgba(233, 30, 99, 0.2);
     position: relative;
     overflow: hidden;
+    animation: heartAppear 0.6s ease-out backwards;
+}
+
+.heart-item:nth-child(1) { animation-delay: 0.1s; }
+.heart-item:nth-child(2) { animation-delay: 0.2s; }
+.heart-item:nth-child(3) { animation-delay: 0.3s; }
+.heart-item:nth-child(4) { animation-delay: 0.4s; }
+.heart-item:nth-child(5) { animation-delay: 0.5s; }
+.heart-item:nth-child(6) { animation-delay: 0.6s; }
+.heart-item:nth-child(7) { animation-delay: 0.7s; }
+.heart-item:nth-child(8) { animation-delay: 0.8s; }
+.heart-item:nth-child(9) { animation-delay: 0.9s; }
+
+@keyframes heartAppear {
+    from {
+        opacity: 0;
+        transform: scale(0) rotate(-180deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.heart-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(233, 30, 99, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.heart-item:hover::before {
+    width: 120%;
+    height: 120%;
 }
 
 .heart-item:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 25px rgba(233, 30, 99, 0.3);
+    transform: scale(1.15) rotate(5deg);
+    box-shadow: 0 12px 35px rgba(233, 30, 99, 0.4);
 }
 
 .heart-icon {
     font-size: 3rem;
     color: #e91e63;
-    animation: pulse 2s infinite;
+    animation: heartPulse 2s infinite;
+    z-index: 1;
 }
 
-/* Размеры сердечек (3 варианта) */
-.heart-item.small { width: 80px; height: 80px; }
-.heart-item.medium { width: 100px; height: 100px; }
-.heart-item.large { width: 120px; height: 120px; }
+@keyframes heartPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Размеры сердечек */
+.heart-item.small { width: 90px; height: 90px; }
+.heart-item.medium { width: 110px; height: 110px; }
+.heart-item.large { width: 130px; height: 130px; }
 
 .heart-item.small .heart-icon { font-size: 2.5rem; }
 .heart-item.medium .heart-icon { font-size: 3rem; }
 .heart-item.large .heart-icon { font-size: 3.5rem; }
+
+/* === ЦЕНА НА СЕРДЕЧКЕ === */
+.heart-price {
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #e91e63, #ff4081);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(233, 30, 99, 0.3);
+    white-space: nowrap;
+    z-index: 2;
+    transition: transform 0.3s;
+}
+
+.heart-item:hover .heart-price {
+    transform: translateX(-50%) scale(1.1);
+}
+
+.heart-item.small .heart-price { font-size: 0.75rem; padding: 4px 12px; bottom: -25px; }
+.heart-item.large .heart-price { font-size: 0.9rem; padding: 6px 18px; bottom: -30px; }
 
 /* === МОДАЛЬНОЕ ОКНО === */
 .modal {
@@ -139,10 +354,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
     z-index: 1000;
     align-items: center;
     justify-content: center;
+    animation: fadeIn 0.3s;
 }
 
 .modal.active {
@@ -151,87 +368,158 @@ body {
 
 .modal-content {
     background: white;
-    padding: 30px;
-    border-radius: 20px;
-    max-width: 400px;
+    padding: 35px;
+    border-radius: 25px;
+    max-width: 450px;
     width: 90%;
     position: relative;
     text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: modalSlideIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.7) translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 .close-modal {
     position: absolute;
     top: 15px;
     right: 20px;
-    font-size: 1.5rem;
+    font-size: 2rem;
     cursor: pointer;
     color: #999;
+    transition: all 0.3s;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close-modal:hover {
+    color: #e91e63;
+    background: #fff0f5;
+    transform: rotate(90deg);
 }
 
 .modal-body img {
     width: 100%;
-    max-height: 200px;
+    max-height: 220px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.modal-body h3 {
+    font-size: 1.5rem;
+    color: #e91e63;
+    margin-bottom: 15px;
+}
+
+.modal-body p {
+    color: #666;
+    line-height: 1.6;
     margin-bottom: 15px;
 }
 
 .modal-price {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: #e91e63;
-    margin: 15px 0;
+    margin: 20px 0;
+    padding: 15px;
+    background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+    border-radius: 15px;
 }
 
 /* === ПЛАВАЮЩАЯ КОРЗИНА === */
 .cart-floating {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 30px;
+    right: 30px;
     background: white;
-    padding: 15px 20px;
+    padding: 18px 25px;
     border-radius: 50px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.2);
     display: none;
     align-items: center;
     gap: 15px;
     z-index: 999;
+    animation: slideInRight 0.5s ease-out;
+    border: 2px solid #ffe4e1;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .cart-floating.active {
     display: flex;
 }
 
+.cart-floating span {
+    font-weight: 600;
+    color: #333;
+    font-size: 1rem;
+}
+
 .checkout-btn {
-    background: #4CAF50;
+    background: linear-gradient(45deg, #4CAF50, #8BC34A);
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 12px 25px;
+    border-radius: 25px;
     cursor: pointer;
     font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
-/* === АНИМАЦИИ === */
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+.checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
+/* === СНОСКА ПРО ПОЦЕЛУИ === */
+.footer-note {
+    margin-top: 40px;
+    margin-bottom: 80px;
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+    max-width: 550px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    animation: fadeIn 1.2s ease-out;
+    border-left: 4px solid #e91e63;
 }
 
-/* === АДАПТИВНОСТЬ === */
-@media (max-width: 600px) {
-    .love-title { font-size: 1.8rem; }
-    .hearts-grid { gap: 15px; }
-    .heart-item.small { width: 70px; height: 70px; }
-    .heart-item.medium { width: 90px; height: 90px; }
-    .heart-item.large { width: 110px; height: 110px; }
+.footer-note strong {
+    color: #e91e63;
+    font-weight: 700;
 }
 
+/* === УВЕДОМЛЕНИЯ === */
 @keyframes fadeInOut {
     0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
     10% { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -239,47 +527,59 @@ body {
     100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
 }
 
-/* === ЦЕНА НА СЕРДЕЧКЕ === */
-.heart-price {
-    position: absolute;
-    bottom: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: white;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #e91e63;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    white-space: nowrap;
-}
-
-.heart-item.small .heart-price { font-size: 0.7rem; padding: 3px 10px; }
-.heart-item.large .heart-price { font-size: 0.9rem; padding: 5px 15px; }
-
-/* === СНОСКА ПРО ПОЦЕЛУИ === */
-.footer-note {
-    margin-top: 30px;
-    padding: 15px 20px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 15px;
-    font-size: 0.85rem;
-    color: #666;
-    text-align: center;
-    max-width: 500px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-
-.footer-note strong {
-    color: #e91e63;
-    font-weight: 600;
-}
-
-/* === АДАПТИВНОСТЬ ДЛЯ СНОСКИ === */
-@media (max-width: 600px) {
+/* === АДАПТИВНОСТЬ === */
+@media (max-width: 768px) {
+    .march8-greeting {
+        font-size: 2.5rem;
+    }
+    
+    .love-title {
+        font-size: 1.6rem;
+    }
+    
+    .catalog-title {
+        font-size: 1.8rem;
+    }
+    
+    .hearts-grid {
+        gap: 20px;
+        padding: 15px;
+    }
+    
+    .heart-item.small { width: 75px; height: 75px; }
+    .heart-item.medium { width: 95px; height: 95px; }
+    .heart-item.large { width: 115px; height: 115px; }
+    
+    .heart-item.small .heart-icon { font-size: 2rem; }
+    .heart-item.medium .heart-icon { font-size: 2.5rem; }
+    .heart-item.large .heart-icon { font-size: 3rem; }
+    
+    .heart-price {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+    
     .footer-note {
-        margin: 20px 10px 40px;
-        font-size: 0.8rem;
+        margin: 20px 15px 100px;
+        font-size: 0.85rem;
+        padding: 15px 20px;
+    }
+    
+    .cart-floating {
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .march8-greeting {
+        font-size: 2rem;
+    }
+    
+    .hearts-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

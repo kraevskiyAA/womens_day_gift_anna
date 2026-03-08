@@ -73,15 +73,33 @@ const products = [
     }
 ];
 
+function createFloatingHearts() {
+    const container = document.getElementById('hearts-bg');
+    const hearts = ['❤️', '💖', '', '💗', '', '💘'];
+    
+    // Создаём 15 плавающих сердечек
+    for (let i = 0; i < 15; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDuration = (Math.random() * 10 + 10) + 's'; // 10-20s
+        heart.style.animationDelay = Math.random() * 15 + 's';
+        heart.style.fontSize = (Math.random() * 2 + 1.5) + 'rem';
+        container.appendChild(heart);
+    }
+}
+
 // === ФУНКЦИЯ РАЗМЕРА СЕРДЕЧКА ПО ЦЕНЕ ===
 function getHeartSizeByPrice(price) {
-    if (price <= 7000) return 'small';      // 5000-7000
-    if (price <= 12000) return 'medium';    // 8000-12000
+    if (price <= 8000) return 'small';      // 5000-7000
+    if (price <= 16000) return 'medium';    // 8000-12000
     return 'large';                         // 13000+
 }
 
 // === ИНИЦИАЛИЗАЦИЯ ===
 document.addEventListener('DOMContentLoaded', () => {
+    createFloatingHearts();
     initWelcomeScreen();
     renderHearts();
     updateBudgetDisplay();
@@ -151,7 +169,7 @@ function openModal(product) {
     currentProduct = product;
     document.getElementById('modal-title').textContent = product.name;
     document.getElementById('modal-desc').textContent = product.desc;
-    document.getElementById('modal-price').textContent = product.price.toLocaleString('ru-RU') + ' 💰';
+    document.getElementById('modal-price-value').textContent = product.price.toLocaleString('ru-RU');
     document.getElementById('modal-img').src = product.img;
     document.getElementById('product-modal').classList.add('active');
 }

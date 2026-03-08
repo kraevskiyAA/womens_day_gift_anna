@@ -3,37 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Для тебя ❤️</title>
+    <title> С 8 марта, Анечка! ❤️</title>
     <link rel="stylesheet" href="css/style.css">
     <!-- Подключаем красивый шрифт Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- ФОНОВЫЕ СЕРДЕЧКИ -->
+    <div class="hearts-background" id="hearts-bg"></div>
 
-    <!-- ЭКРАН 1: Приветствие (Disclaimer) -->
+    <!-- ЭКРАН 1: Приветствие -->
     <section id="welcome-screen" class="screen active">
         <div class="welcome-content">
-            <h1 class="love-title">Для самой лучшей девушки в мире 💖</h1>
-            <p class="love-text">
-                Я тебя очень люблю! <br>
-                Этот маленький сайт — возможность выбрать то, что принесёт тебе радость.
-            </p>
+            <h1 class="march8-greeting">С 8 марта, Солнце! ☀️</h1>
+            <div class="love-message">
+                <h2 class="love-title">Для самой лучшей девушки в мире 💖</h2>
+                <p class="love-text">
+                    Я тебя очень люблю! <br>
+                    Этот маленький сайт — возможность выбрать то, что принесёт тебе радость.
+                </p>
+            </div>
             <button id="start-btn" class="main-btn">Перейти к выбору подарков</button>
         </div>
     </section>
 
-    <!-- ЭКРАН 2: Каталог подарков (9 сердечек) -->
+    <!-- ЭКРАН 2: Каталог подарков -->
     <section id="catalog-screen" class="screen">
         <header class="catalog-header">
-            <h2>Выбери свои подарки</h2>
+            <h2 class="catalog-title">Выбери свои подарки</h2>
             <div class="budget-info">
-                <span>Бюджет: <span id="budget-display">0</span> / <span id="budget-limit">50000</span> 💰</span>
+                <span>💰 Бюджет: <span id="budget-display">0</span> / <span id="budget-limit">50000</span></span>
             </div>
         </header>
 
         <main class="hearts-grid" id="hearts-container">
             <!-- Сердечки будут сгенерированы через JS -->
         </main>
+        
+        <!-- СНОСКА ПРО ПОЦЕЛУИ -->
         <div class="footer-note">
             * Неизрасходованные условные единицы конвертируются в страстные поцелуи по курсу <strong>1 к 200</strong> 💋
         </div>
@@ -47,7 +54,7 @@
                 <img id="modal-img" src="" alt="Подарок">
                 <h3 id="modal-title"></h3>
                 <p id="modal-desc"></p>
-                <p class="modal-price">Цена: <span id="modal-price"></span> 💰</p>
+                <p class="modal-price">Цена: <span id="modal-price-value"></span> 💰</p>
                 <button id="add-to-cart-btn" class="main-btn">Добавить в корзину</button>
             </div>
         </div>
@@ -59,6 +66,6 @@
         <button id="checkout-btn" class="checkout-btn">Оформить</button>
     </div>
 
-    <script src="js/script.js?v=6"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
