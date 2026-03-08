@@ -1,3 +1,7 @@
+/* ========================================
+   🎁 GIFT SHOP — ПОЛНЫЙ СТИЛЬ
+   ======================================== */
+
 /* === БАЗОВЫЕ СТИЛИ === */
 * {
     box-sizing: border-box;
@@ -85,15 +89,15 @@ body {
     text-align: center;
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
-    padding-top: 10vh; 
-    padding-bottom: 10vh; 
+    padding-top: 10vh;
+    padding-bottom: 10vh;
 }
 
 .welcome-content {
     max-width: 700px;
-    padding: 50px 40px; 
+    padding: 50px 40px;
     animation: slideIn 0.8s ease-out;
-    margin-top: 5vh; 
+    margin-top: 5vh;
 }
 
 @keyframes slideIn {
@@ -109,15 +113,15 @@ body {
 
 .march8-greeting {
     font-family: 'Pacifico', cursive;
-    font-size: 4.5rem;  /* Было 3.5rem — сделали больше */
+    font-size: 4.5rem;
     background: linear-gradient(45deg, #e91e63, #ff4081, #ff80ab);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 40px;  /* Было 30px */
+    margin-bottom: 40px;
     animation: heartbeat 1.5s infinite, glow 2s ease-in-out infinite alternate;
     text-shadow: 0 0 30px rgba(233, 30, 99, 0.3);
-    line-height: 1.2;  /* Добавлено для лучшей читаемости */
+    line-height: 1.2;
 }
 
 @keyframes heartbeat {
@@ -136,42 +140,38 @@ body {
 
 .love-message {
     background: rgba(255, 255, 255, 0.9);
-    padding: 40px;  /* Было 30px */
-    border-radius: 25px;  /* Было 20px */
-    margin-bottom: 40px;  /* Было 30px */
+    padding: 40px;
+    border-radius: 25px;
+    margin-bottom: 40px;
     box-shadow: 0 8px 32px rgba(233, 30, 99, 0.2);
 }
 
 .love-title {
     font-family: 'Pacifico', cursive;
-    font-size: 2.5rem;  /* Было 2rem */
+    font-size: 2.5rem;
     color: #e91e63;
-    margin-bottom: 20px;  /* Было 15px */
+    margin-bottom: 20px;
     animation: pulse 2s infinite;
 }
 
-.love-text {
-    font-size: 1.4rem;  /* Было 1.2rem */
-    color: #555;
-    line-height: 2;  /* Было 1.8 — больше воздуха */
-}
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.8; }
 }
 
 .love-text {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: #555;
-    line-height: 1.8;
+    line-height: 2;
 }
 
+/* === КНОПКИ === */
 .main-btn {
     background: linear-gradient(45deg, #e91e63, #ff4081);
     color: white;
     border: none;
-    padding: 22px 60px;  /* Было 18px 50px */
-    font-size: 1.4rem;  /* Было 1.2rem */
+    padding: 22px 60px;
+    font-size: 1.4rem;
     font-weight: 600;
     border-radius: 50px;
     cursor: pointer;
@@ -205,51 +205,70 @@ body {
     transform: translateY(-1px) scale(1.02);
 }
 
+.secondary-btn {
+    background: white;
+    color: #e91e63;
+    border: 2px solid #e91e63;
+    padding: 15px 35px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.secondary-btn:hover {
+    background: #e91e63;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+}
+
 /* === КАТАЛОГ === */
 #catalog-screen {
     justify-content: flex-start;
-    padding-top: 60px;  /* Было 40px */
-    padding-bottom: 60px;  /* Добавлено */
+    padding-top: 60px;
+    padding-bottom: 60px;
     background: rgba(255, 255, 255, 0.2);
+}
+
+.catalog-header {
+    text-align: center;
+    margin-bottom: 30px;
+    animation: fadeIn 0.8s ease-out;
 }
 
 .catalog-title {
     font-family: 'Pacifico', cursive;
-    font-size: 2.8rem;  /* Было 2.2rem */
+    font-size: 2.8rem;
     color: #e91e63;
-    margin-bottom: 30px;  /* Было 20px */
+    margin-bottom: 30px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 .budget-info {
     background: white;
-    padding: 15px 35px;  /* Было 12px 30px */
+    padding: 15px 35px;
     border-radius: 25px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     font-weight: 600;
-    font-size: 1.3rem;  /* Было 1.1rem */
+    font-size: 1.3rem;
     display: inline-block;
     transition: transform 0.3s;
 }
 
-.hearts-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;  /* Было 30px */
-    max-width: 750px;  /* Было 700px */
-    width: 100%;
-    padding: 30px;  /* Было 20px */
-    animation: fadeIn 1s ease-out;
+.budget-info:hover {
+    transform: scale(1.05);
 }
 
 /* === СЕТКА СЕРДЕЧЕК === */
 .hearts-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    max-width: 700px;
+    gap: 40px;
+    max-width: 750px;
     width: 100%;
-    padding: 20px;
+    padding: 30px;
     animation: fadeIn 1s ease-out;
 }
 
@@ -324,30 +343,34 @@ body {
 }
 
 /* Размеры сердечек */
-/* Размеры сердечек */
-.heart-item.small { width: 110px; height: 110px; }  /* Было 90px */
-.heart-item.medium { width: 135px; height: 135px; }  /* Было 110px */
-.heart-item.large { width: 160px; height: 160px; }  /* Было 130px */
+.heart-item.small { width: 110px; height: 110px; }
+.heart-item.medium { width: 135px; height: 135px; }
+.heart-item.large { width: 160px; height: 160px; }
 
-.heart-item.small .heart-icon { font-size: 3rem; }  /* Было 2.5rem */
-.heart-item.medium .heart-icon { font-size: 3.5rem; }  /* Было 3rem */
-.heart-item.large .heart-icon { font-size: 4rem; }  /* Было 3.5rem */
+.heart-item.small .heart-icon { font-size: 3rem; }
+.heart-item.medium .heart-icon { font-size: 3.5rem; }
+.heart-item.large .heart-icon { font-size: 4rem; }
 
+/* Цена на сердечке */
 .heart-price {
     position: absolute;
-    bottom: -32px;  /* Было -28px */
+    bottom: -32px;
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(45deg, #e91e63, #ff4081);
     color: white;
-    padding: 6px 18px;  /* Было 5px 15px */
+    padding: 6px 18px;
     border-radius: 20px;
-    font-size: 0.95rem;  /* Было 0.85rem */
+    font-size: 0.95rem;
     font-weight: 600;
     box-shadow: 0 3px 10px rgba(233, 30, 99, 0.3);
     white-space: nowrap;
     z-index: 2;
     transition: transform 0.3s;
+}
+
+.heart-item:hover .heart-price {
+    transform: translateX(-50%) scale(1.1);
 }
 
 .heart-item.small .heart-price { 
@@ -361,7 +384,7 @@ body {
     bottom: -35px; 
 }
 
-/* === МОДАЛЬНОЕ ОКНО === */
+/* === МОДАЛЬНОЕ ОКНО ТОВАРА === */
 .modal {
     display: none;
     position: fixed;
@@ -472,6 +495,13 @@ body {
     z-index: 999;
     animation: slideInRight 0.5s ease-out;
     border: 2px solid #ffe4e1;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.cart-floating:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
 }
 
 @keyframes slideInRight {
@@ -513,80 +543,6 @@ body {
     box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
 }
 
-/* === СНОСКА ПРО ПОЦЕЛУИ === */
-.footer-note {
-    margin-top: 40px;
-    margin-bottom: 80px;
-    padding: 20px 30px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    font-size: 0.9rem;
-    color: #666;
-    text-align: center;
-    max-width: 550px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    animation: fadeIn 1.2s ease-out;
-    border-left: 4px solid #e91e63;
-}
-
-.footer-note strong {
-    color: #e91e63;
-    font-weight: 700;
-}
-
-/* === УВЕДОМЛЕНИЯ === */
-@keyframes fadeInOut {
-    0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-    10% { opacity: 1; transform: translateX(-50%) translateY(0); }
-    90% { opacity: 1; transform: translateX(-50%) translateY(0); }
-    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-}
-
-/* === АДАПТИВНОСТЬ === */
-@media (max-width: 768px) {
-    .march8-greeting {
-        font-size: 3.2rem;  /* Было 2.5rem */
-    }
-    
-    .love-title {
-        font-size: 2rem;  /* Было 1.6rem */
-    }
-    
-    .love-text {
-        font-size: 1.2rem;  /* Было 1rem (подразумевалось) */
-    }
-    
-    .catalog-title {
-        font-size: 2.2rem;  /* Было 1.8rem */
-    }
-    
-    .hearts-grid {
-        gap: 25px;  /* Было 20px */
-        padding: 20px;  /* Было 15px */
-    }
-    
-    .heart-item.small { width: 90px; height: 90px; }
-    .heart-item.medium { width: 110px; height: 110px; }
-    .heart-item.large { width: 130px; height: 130px; }
-    
-    .footer-note {
-        margin: 30px 15px 120px;  /* Было 20px 15px 100px */
-        font-size: 0.95rem;  /* Было 0.85rem */
-        padding: 20px 25px;  /* Было 15px 20px */
-    }
-}
-
-@media (max-width: 480px) {
-    .march8-greeting {
-        font-size: 2.5rem;  /* Было 2rem */
-    }
-    
-    .hearts-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-}
-
 /* === МОДАЛЬНОЕ ОКНО КОРЗИНЫ === */
 .cart-modal .modal-content {
     max-width: 550px;
@@ -603,7 +559,7 @@ body {
     margin-bottom: 25px;
 }
 
-/* === СПИСОК ТОВАРОВ В КОРЗИНЕ === */
+/* Список товаров в корзине */
 .cart-items {
     margin-bottom: 25px;
 }
@@ -675,7 +631,7 @@ body {
     box-shadow: 0 4px 12px rgba(244, 67, 54, 0.4);
 }
 
-/* === ПУСТАЯ КОРЗИНА === */
+/* Пустая корзина */
 .cart-empty {
     text-align: center;
     padding: 40px 20px;
@@ -691,7 +647,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* === ИТОГИ КОРЗИНЫ === */
+/* Итоги корзины */
 .cart-summary {
     background: white;
     padding: 20px;
@@ -724,7 +680,7 @@ body {
     color: #4CAF50;
 }
 
-/* === КНОПКИ ДЕЙСТВИЙ === */
+/* Кнопки действий */
 .cart-actions {
     display: flex;
     gap: 15px;
@@ -732,38 +688,79 @@ body {
     flex-wrap: wrap;
 }
 
-.secondary-btn {
-    background: white;
+/* === СНОСКА ПРО ПОЦЕЛУИ === */
+.footer-note {
+    margin-top: 40px;
+    margin-bottom: 80px;
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+    max-width: 550px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    animation: fadeIn 1.2s ease-out;
+    border-left: 4px solid #e91e63;
+}
+
+.footer-note strong {
     color: #e91e63;
-    border: 2px solid #e91e63;
-    padding: 15px 35px;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s;
+    font-weight: 700;
 }
 
-.secondary-btn:hover {
-    background: #e91e63;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
-}
-
-/* === ОБНОВЛЁННАЯ ПЛАВАЮЩАЯ КОРЗИНА === */
-.cart-floating {
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.cart-floating:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+/* === УВЕДОМЛЕНИЯ === */
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+    10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
 }
 
 /* === АДАПТИВНОСТЬ === */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+    .march8-greeting {
+        font-size: 3.2rem;
+    }
+    
+    .love-title {
+        font-size: 2rem;
+    }
+    
+    .love-text {
+        font-size: 1.2rem;
+    }
+    
+    .catalog-title {
+        font-size: 2.2rem;
+    }
+    
+    .hearts-grid {
+        gap: 25px;
+        padding: 20px;
+    }
+    
+    .heart-item.small { width: 90px; height: 90px; }
+    .heart-item.medium { width: 110px; height: 110px; }
+    .heart-item.large { width: 130px; height: 130px; }
+    
+    .footer-note {
+        margin: 30px 15px 120px;
+        font-size: 0.95rem;
+        padding: 20px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .march8-greeting {
+        font-size: 2.5rem;
+    }
+    
+    .hearts-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
     .cart-modal .modal-content {
         padding: 25px;
         margin: 20px;
